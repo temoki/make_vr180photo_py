@@ -33,8 +33,8 @@ vrimage_path = os.path.join(limage_dir, limage_fname + '.vr.jpg')
 shutil.copyfile(limage_path, vrimage_path)
 
 # Load image's xmp
-vrimage_path = XMPFiles(file_path=vrimage_path, open_forupdate=True)
-lxmp = vrimage_path.get_xmp()
+vrimage_file = XMPFiles(file_path=vrimage_path, open_forupdate=True)
+lxmp = vrimage_file.get_xmp()
 #print(lxmp)
 
 # Google's namespace
@@ -62,9 +62,9 @@ lxmp.set_property(XMP_GIMAGE, 'Mime', 'image/jpeg')
 lxmp.set_property(XMP_GIMAGE, 'Data', rimage_base64)
 
 # Put XMP.
-if vrimage_path.can_put_xmp(lxmp):
-    vrimage_path.put_xmp(lxmp)
-    print(vrimage_path.get_xmp())
+if vrimage_file.can_put_xmp(lxmp):
+    vrimage_file.put_xmp(lxmp)
+    print(vrimage_file.get_xmp())
     print("Done!")
 
-vrimage_path.close_file()
+vrimage_file.close_file()
